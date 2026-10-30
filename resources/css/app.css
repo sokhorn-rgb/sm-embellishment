@@ -1,0 +1,793 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+
+@source '../views';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+/* KH ABC FANCY 11 / KH ABC FANCY Khmer Traditional Art Typography */
+@font-face {
+    font-family: 'KH ABC FANCY 11';
+    src: url('/fonts/kh-abc-fancy-italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'KH ABC FANCY 11';
+    src: url('/fonts/kh-abc-fancy.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'KH ABC FANCY';
+    src: url('/fonts/kh-abc-fancy-italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'KH ABC FANCY';
+    src: url('/fonts/kh-abc-fancy.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Kh ABC HEAD';
+    src: url('/fonts/kh-abc-head-italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@theme {
+    --font-sans: 'Kantumruy Pro', 'Montserrat', 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-serif: 'KH ABC FANCY 11', 'KH ABC FANCY', 'Noto Serif Khmer', 'Cormorant Garamond', Georgia, serif;
+    --font-display: 'KH ABC FANCY 11', 'KH ABC FANCY', 'Noto Serif Khmer', 'Cormorant Garamond', Georgia, serif;
+    --font-fancy: 'KH ABC FANCY 11', 'KH ABC FANCY', 'Noto Serif Khmer', serif;
+
+    --color-brand-50: #fbf8f0;
+    --color-brand-100: #f6eedb;
+    --color-brand-200: #ecdbb6;
+    --color-brand-300: #dec187;
+    --color-brand-400: #cca358;
+    --color-brand-500: #b38728;
+    --color-brand-600: #996e1b;
+    --color-brand-700: #7d5418;
+    --color-brand-800: #674319;
+    --color-brand-900: #553719;
+    --color-brand-950: #321d0a;
+
+    --color-gold-50: #fbf8f0;
+    --color-gold-100: #f6eedb;
+    --color-gold-200: #ecdbb6;
+    --color-gold-300: #dec187;
+    --color-gold-400: #cca358;
+    --color-gold-500: #b38728;
+    --color-gold-600: #996e1b;
+    --color-gold-700: #7d5418;
+    --color-gold-800: #674319;
+    --color-gold-900: #553719;
+    --color-gold-950: #321d0a;
+
+    --color-surface-dark: #1c1813;
+    --color-surface-darker: #14120f;
+    --color-surface-card: #241f19;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar in couture champagne gold */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #fbf9f5;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #dfcaa2;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b38728;
+}
+
+/* Masonry-like gallery */
+@layer components {
+    .gallery-masonry {
+        columns: 2;
+        column-gap: 1rem;
+    }
+
+    .gallery-masonry>* {
+        break-inside: avoid;
+        margin-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) {
+        .gallery-masonry {
+            columns: 3;
+        }
+    }
+}
+
+/* Animations */
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-left {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+    animation: slide-in-left 0.6s ease-out forwards;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Stagger delays */
+.delay-100 {
+    animation-delay: 0.1s;
+}
+
+.delay-200 {
+    animation-delay: 0.2s;
+}
+
+.delay-300 {
+    animation-delay: 0.3s;
+}
+
+.delay-400 {
+    animation-delay: 0.4s;
+}
+
+.delay-500 {
+    animation-delay: 0.5s;
+}
+
+.delay-600 {
+    animation-delay: 0.6s;
+}
+
+/* Khmer Fancy Typography Utilities */
+.font-fancy {
+    font-family: 'KH ABC FANCY 11', 'KH ABC FANCY', 'Noto Serif Khmer', serif;
+}
+
+.font-fancy-italic {
+    font-family: 'KH ABC FANCY 11', 'KH ABC FANCY', 'Noto Serif Khmer', serif;
+    font-style: italic;
+}
+
+/* ========================================================
+   HAUTE COUTURE LUXURY ANIMATION SUITE (GLOBAL)
+   ======================================================== */
+
+/* Cinematic Slow Ken-Burns Zoom for Hero Background */
+@keyframes ken-burns-slow {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.06);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.animate-ken-burns {
+    animation: ken-burns-slow 24s ease-in-out infinite alternate;
+    will-change: transform;
+}
+
+/* Diagonal Gold Sheen on Hover / Shimmer (Slow, elegant silk light sweep) */
+@keyframes gold-sheen-sweep {
+    0% {
+        transform: translateX(-160%) skewX(-20deg);
+    }
+
+    100% {
+        transform: translateX(260%) skewX(-20deg);
+    }
+}
+
+.btn-shimmer {
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-shimmer * {
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), color 0.45s ease;
+}
+
+.btn-shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(
+        90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.05) 20%, 
+        rgba(255, 255, 255, 0.30) 50%, 
+        rgba(255, 255, 255, 0.05) 80%, 
+        transparent 100%
+    );
+    transform: translateX(-160%) skewX(-20deg);
+    pointer-events: none;
+}
+
+.btn-shimmer:hover::after {
+    animation: gold-sheen-sweep 1.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Gentle Luxury Golden Glow Pulse */
+@keyframes gold-halo-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(179, 135, 40, 0.45);
+        transform: scale(1);
+    }
+
+    50% {
+        box-shadow: 0 0 20px 4px rgba(212, 175, 55, 0.35);
+        transform: scale(1.02);
+    }
+}
+
+.animate-gold-halo {
+    animation: gold-halo-pulse 3.5s ease-in-out infinite;
+}
+
+/* Soft Floating Motion for Decorative Motifs */
+@keyframes float-lux {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-8px) rotate(1.5deg);
+    }
+}
+
+.animate-float-lux {
+    animation: float-lux 4s ease-in-out infinite;
+}
+
+/* Khmer Kbach Line Expansion */
+@keyframes kbach-line-grow {
+    from {
+        width: 0%;
+        opacity: 0;
+    }
+
+    to {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+/* --------------------------------------------------------
+   SCROLL REVEAL ENGINE CLASSES
+   -------------------------------------------------------- */
+.reveal,
+.reveal-up {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-fade {
+    opacity: 0;
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity;
+}
+
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.93) translateY(20px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+/* State when scrolled into view */
+.revealed {
+    opacity: 1 !important;
+    transform: translate(0, 0) scale(1) !important;
+}
+
+/* Staggered Delay Utilities */
+.stagger-1 {
+    transition-delay: 0.08s !important;
+}
+
+.stagger-2 {
+    transition-delay: 0.16s !important;
+}
+
+.stagger-3 {
+    transition-delay: 0.24s !important;
+}
+
+.stagger-4 {
+    transition-delay: 0.32s !important;
+}
+
+.stagger-5 {
+    transition-delay: 0.40s !important;
+}
+
+.stagger-6 {
+    transition-delay: 0.48s !important;
+}
+
+.stagger-7 {
+    transition-delay: 0.56s !important;
+}
+
+.stagger-8 {
+    transition-delay: 0.64s !important;
+}
+
+/* Luxury Card Micro-physics (neutral) */
+.card-luxury {
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.45s ease;
+}
+
+
+/* Luxury Image Hover Zoom */
+.img-luxury-zoom {
+    overflow: hidden;
+}
+
+.img-luxury-zoom img {
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+}
+
+.img-luxury-zoom:hover img {
+    transform: scale(1.05);
+    filter: brightness(1.03) contrast(1.02);
+}
+
+/* Khmer Art Border Shimmer */
+.khmer-gold-border {
+    position: relative;
+}
+
+.khmer-gold-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(255, 255, 255, 0.1), rgba(212, 175, 55, 0.4));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* ========================================================
+   HAUTE COUTURE SILK ATMOSPHERE & GLASSMORPHISM
+   ======================================================== */
+
+/* Silk Background Atmospheric Gradients */
+.bg-silk-alabaster {
+    background: radial-gradient(ellipse at 50% 0%, #fdfbf7 0%, #f9f5ec 48%, #f3ece0 100%);
+}
+
+.bg-silk-champagne {
+    background: radial-gradient(ellipse at 50% 15%, #faf5ea 0%, #f4ebd9 55%, #eae0cb 100%);
+}
+
+.bg-silk-ivory {
+    background: linear-gradient(180deg, #fdfcf9 0%, #f6f1e6 50%, #fbf8f2 100%);
+}
+
+.bg-silk-cashmere {
+    background: radial-gradient(ellipse at 50% 30%, #f7f2ea 0%, #ede5d6 60%, #e2d7c4 100%);
+}
+
+/* Ambient Gold Light Droplets */
+.ambient-gold-glow {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.14) 0%, rgba(212, 175, 55, 0.04) 50%, transparent 70%);
+    filter: blur(50px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Haute Couture Glassmorphism Cards */
+.glass-couture {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(226, 212, 186, 0.7);
+    box-shadow: 0 16px 36px -12px rgba(45, 34, 18, 0.07), 0 0 0 1px rgba(255, 255, 255, 0.85) inset;
+    transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-couture:hover {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(179, 135, 40, 0.5);
+    box-shadow: 0 24px 48px -12px rgba(179, 135, 40, 0.22), 0 0 0 1px rgba(212, 175, 55, 0.35) inset, 0 6px 16px rgba(0, 0, 0, 0.04);
+    transform: translateY(-5px);
+}
+
+/* Dark Atelier Glassmorphism Card (for Cinematic Photo Cards) */
+.glass-couture-dark {
+    background: linear-gradient(180deg, rgba(22, 18, 14, 0.72) 0%, rgba(14, 11, 8, 0.85) 100%);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .glass-couture-dark,
+.glass-couture-dark:hover {
+    background: linear-gradient(180deg, rgba(28, 22, 16, 0.86) 0%, rgba(16, 12, 9, 0.94) 100%);
+    border-color: rgba(212, 175, 55, 0.65);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.65), 0 0 24px rgba(212, 175, 55, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+    transform: translateY(-3px);
+}
+
+/* Luxury Light Sheen on Card Hover (Slow, graceful silk light drift) */
+.luxury-card-sheen {
+    position: relative;
+    overflow: hidden;
+}
+
+.luxury-card-sheen::after {
+    content: '';
+    position: absolute;
+    top: -60%;
+    left: -80%;
+    width: 38%;
+    height: 220%;
+    background: linear-gradient(to right,
+            transparent 0%,
+            rgba(255, 248, 220, 0.02) 20%,
+            rgba(255, 245, 205, 0.20) 50%,
+            rgba(255, 248, 220, 0.02) 80%,
+            transparent 100%);
+    transform: rotate(25deg);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.luxury-card-sheen:hover::after {
+    opacity: 1;
+    left: 160%;
+    transition: left 1.7s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
+}
+
+/* Featured / Royal Highlight Glassmorphism Card */
+.glass-couture-gold {
+    background: linear-gradient(145deg, rgba(254, 250, 242, 0.9) 0%, rgba(248, 240, 224, 0.82) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1.5px solid rgba(179, 135, 40, 0.55);
+    box-shadow: 0 22px 50px -12px rgba(179, 135, 40, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.95) inset;
+    transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-couture-gold:hover {
+    border-color: rgba(179, 135, 40, 0.85);
+    box-shadow: 0 28px 60px -12px rgba(179, 135, 40, 0.35), 0 0 24px 2px rgba(212, 175, 55, 0.25), 0 0 0 1px rgba(255, 255, 255, 1) inset;
+    transform: translateY(-6px);
+}
+
+/* Subtle Royal Silk Weave / Grain Pattern */
+.silk-mesh-subtle {
+    background-image: radial-gradient(rgba(179, 135, 40, 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+/* ========================================================
+   STYLE 2: LIQUID GOLD METALLIC TEXTURE (មាសសន្លឹក)
+   ======================================================== */
+@keyframes gold-text-shimmer {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.text-gold-metallic {
+    background: linear-gradient(135deg, #a67c1e 0%, #d4af37 20%, #fff4c2 45%, #e5b94c 60%, #b38728 80%, #7d5418 100%);
+    background-size: 250% 250%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gold-text-shimmer 8s ease-in-out infinite;
+    display: inline-block;
+}
+
+.text-gold-metallic-static {
+    background: linear-gradient(135deg, #b8860b 0%, #d4af37 25%, #fff2be 50%, #d4af37 75%, #996e1b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+/* ========================================================
+   STYLE 3: THE GOLDEN THREAD EMBROIDERY MOTIF (ខ្សែអំបោះមាស)
+   ======================================================== */
+@keyframes golden-thread-dash {
+    to {
+        stroke-dashoffset: -120;
+    }
+}
+
+.golden-thread-stitch {
+    stroke-dasharray: 6 8;
+    animation: golden-thread-dash 22s linear infinite;
+}
+
+@keyframes needle-glint {
+
+    0%,
+    100% {
+        transform: rotate(-15deg) scale(1);
+        filter: drop-shadow(0 0 2px rgba(212, 175, 55, 0.4));
+    }
+
+    50% {
+        transform: rotate(-10deg) scale(1.08);
+        filter: drop-shadow(0 0 10px rgba(247, 231, 169, 0.8));
+    }
+}
+
+.animate-needle-glint {
+    animation: needle-glint 4s ease-in-out infinite;
+    transform-origin: center;
+}
+
+/* ========================================================
+   STYLE 6: CHAMPAGNE GOLDEN CURSOR AURA (ពន្លឺ Mouse ពណ៌មាស)
+   ======================================================== */
+/* Hide the native default browser cursor on desktop devices with a mouse */
+@media (pointer: fine) {
+
+    *,
+    *::before,
+    *::after {
+        cursor: none !important;
+    }
+}
+
+#luxury-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff7d6 0%, #d4af37 60%, #a67c1e 100%);
+    pointer-events: none;
+    z-index: 99999;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.95), 0 0 2px rgba(255, 255, 255, 0.8);
+    transition: opacity 0.3s ease, width 0.2s ease, height 0.2s ease;
+    will-change: transform;
+}
+
+#luxury-cursor-dot.cursor-hover {
+    width: 9px;
+    height: 9px;
+    background: radial-gradient(circle, #ffffff 0%, #ffd700 70%, #d4af37 100%);
+    box-shadow: 0 0 12px rgba(255, 215, 0, 1), 0 0 3px #ffffff;
+}
+
+#luxury-cursor-aura {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(212, 175, 55, 0.65);
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 99998;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.3s ease,
+        background-color 0.3s ease,
+        opacity 0.3s ease,
+        box-shadow 0.3s ease;
+    will-change: transform;
+}
+
+#luxury-cursor-aura.cursor-hover {
+    width: 58px;
+    height: 58px;
+    border-color: rgba(255, 215, 0, 0.95);
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.28) 0%, rgba(212, 175, 55, 0.08) 60%, transparent 80%);
+    box-shadow: 0 0 24px rgba(212, 175, 55, 0.5);
+}
+
+#luxury-cursor-aura.cursor-active {
+    width: 26px;
+    height: 26px;
+    border-color: #ffd700;
+    background: rgba(212, 175, 55, 0.4);
+    box-shadow: 0 0 16px rgba(212, 175, 55, 0.7);
+}
+
+@media (pointer: coarse),
+(hover: none) {
+
+    #luxury-cursor-dot,
+    #luxury-cursor-aura {
+        display: none !important;
+    }
+}
+
+/* ========================================================
+   STYLE 7: HAUTE COUTURE SILK PAGE TRANSITION CURTAIN
+   ======================================================== */
+#silk-page-curtain {
+    position: fixed;
+    inset: 0;
+    z-index: 99990;
+    transform: translateY(0%);
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+    pointer-events: none;
+}
+
+/* When the page is loaded, slide the curtain up out of view */
+#silk-page-curtain.curtain-reveal {
+    transform: translateY(-100%) !important;
+    pointer-events: none !important;
+}
+
+/* When clicking an internal link, slide the curtain in from bottom to cover screen */
+#silk-page-curtain.curtain-cover {
+    transform: translateY(0%) !important;
+    pointer-events: auto !important;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+/* Prepare curtain at bottom before sliding in */
+#silk-page-curtain.curtain-ready-bottom {
+    transform: translateY(100%) !important;
+    transition: none !important;
+}
+
+/* ========================================================
+   STYLE 7: HAUTE COUTURE SILK PAGE TRANSITION CURTAIN
+   ======================================================== */
+#silk-page-curtain {
+    position: fixed;
+    inset: 0;
+    z-index: 99990;
+    transform: translateY(0%);
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+    pointer-events: none;
+}
+
+/* When the page is loaded, slide the curtain up out of view */
+#silk-page-curtain.curtain-reveal {
+    transform: translateY(-100%) !important;
+    pointer-events: none !important;
+}
+
+/* When clicking an internal link, slide the curtain in from bottom to cover screen */
+#silk-page-curtain.curtain-cover {
+    transform: translateY(0%) !important;
+    pointer-events: auto !important;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+/* Prepare curtain at bottom before sliding in */
+#silk-page-curtain.curtain-ready-bottom {
+    transform: translateY(100%) !important;
+    transition: none !important;
+}
